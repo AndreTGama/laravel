@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ $item['avatar_url'] }}" class="card-img-top" alt="{{$item['login']}}">
+                        <img src="{{ $item['avatar'] }}" class="card-img-top" alt="{{$item['nome']}}">
                         <div class="card-body">
-                            <h5 class="card-title"><p>{{ $item['login'] }}</p></h5>
+                            <h5 class="card-title"><p>{{ $item['nome'] }}</p></h5>
                             <p class="card-text">{{ $item['bio'] }}</p>
                             <a href="#" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-primary">Deletar</a>

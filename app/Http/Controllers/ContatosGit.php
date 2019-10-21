@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contato;
 use Illuminate\Http\Request;
 
 class ContatosGit extends Controller
@@ -15,7 +16,7 @@ class ContatosGit extends Controller
      * @return void
      */
     public function getUsuarios(){
-        $userGitHubs = 0;
+        $userGitHubs = Contato::all();
         return view('/contato/contato')->with('itens', json_decode($userGitHubs, true));;
     }
     /**
@@ -39,14 +40,23 @@ class ContatosGit extends Controller
         // $url = 'https://api.github.com/users/'.$nome.'';
         // $res = $client->get($url);
         // $userGitHubs = (string) $res->getBody();
+        $nome = $req->all();
+        if(isset($nome['nomeUserGit'])){
+            $client = new \GuzzleHttp\Client();
+            $url = 'https://api.github.com/users/'.$nome['nomeUserGit'].'';
+            $res = $client->get($url);
+            $userGitHubs = (string)$res->getBody();
+            $user = json_decode($userGitHubs, true);
+            $name = $user['name'];
+            $bio = $user['bio'];
+            $avatar = $user['avatar_url'];
+            $arrayUser = ['nome'=>$name,'bio'=>$bio,'avatar'=>$avatar];
+            Contato::create($arrayUser);
+            return redirect()->route('contatos.get');
+        }else{
+            return redirect()->route('home');
+        }
         
-        $nome = $req['nomeUserGit'];
-        // $client = new \GuzzleHttp\Client();
-        // $url = 'https://api.github.com/users/'.$nome.'';
-        // $res = $client->get($url);
-        // $userGitHubs = (string) $res->getBody();
-        dd($nome);
-        // return view('/contato/contato')->with('userGitHubs', json_decode($userGitHubs, true));
     }
     /**
      * updateBioUsuario
