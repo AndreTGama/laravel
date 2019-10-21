@@ -1,3 +1,6 @@
 <?php
 
-Route::get('/{nome?}', ['uses' => 'ControllerHome@home']);
+Route::get('/', function(){
+    return view('home');
+});
+Route::post('/contato', ['uses' => 'ControllerHome@home']);

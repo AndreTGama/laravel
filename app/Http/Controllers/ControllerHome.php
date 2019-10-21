@@ -14,13 +14,20 @@ class ControllerHome extends Controller
      */
     public function home(Request $req){
         
-        $usuario = new Usuario();
-        $nome = $usuario->lista()->nome;
+        $nome = $req['nomeUserGit'];
         $client = new \GuzzleHttp\Client();
         $url = 'https://api.github.com/users/'.$nome.'';
         $res = $client->get($url);
         $userGitHubs = (string) $res->getBody();
 
-        return view('home')->with('userGitHubs', json_decode($userGitHubs, true));
+        // Pegando informações da URL usando a biblioteca Guzzlehttp
+        // $usuario = new Usuario();
+        // $nome = $usuario->lista()->nome;
+        // $client = new \GuzzleHttp\Client();
+        // $url = 'https://api.github.com/users/'.$nome.'';
+        // $res = $client->get($url);
+        // $userGitHubs = (string) $res->getBody();
+
+        return view('/contato/contato')->with('userGitHubs', json_decode($userGitHubs, true));
     }
 }
