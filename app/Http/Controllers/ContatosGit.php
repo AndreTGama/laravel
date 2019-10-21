@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class ContatosGit extends Controller
 {   
+    public function home(){
+        return view('home');
+    }
     /**
      * getUsuarios
      *
@@ -13,6 +16,14 @@ class ContatosGit extends Controller
      */
     public function getUsuarios(){
         return view('/contato/contato');
+    }
+    /**
+     * adicionar
+     *
+     * @return void
+     */
+    public function adicionar(){
+        return view('/contato/novoUser');
     }
     /**
      * createUsuario
@@ -34,7 +45,6 @@ class ContatosGit extends Controller
         // $res = $client->get($url);
         // $userGitHubs = (string) $res->getBody();
 
-        return view('/contato/contato');
         // return view('/contato/contato')->with('userGitHubs', json_decode($userGitHubs, true));
     }
     /**
