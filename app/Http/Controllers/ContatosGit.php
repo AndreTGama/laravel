@@ -63,8 +63,9 @@ class ContatosGit extends Controller
      *
      * @return void
      */
-    public function updateBioUsuario(){
-        
+    public function updateBioUsuario($id){
+        $contato = Contato::find($id);
+        return view('/contato/updateUser')->with('item', json_decode($contato, true));
     }
     /**
      * deleteUsuario

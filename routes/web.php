@@ -5,5 +5,6 @@ Route::get('/contato/novouser',['as' => 'contatos.novoUser.get','uses' => 'Conta
 Route::post('/contato/novouser', ['as' => 'contatos.novoUser.post','uses' => 'ContatosGit@createUsuario']);
 
 Route::get('/contato', ['as' => 'contatos.get','uses' => 'ContatosGit@getUsuarios']);
-Route::put('/contato', ['as' => 'contatos.put', 'uses' => 'ContatosGit@updateBioUsuario']);
+Route::get('/contato/update/{id}', ['as' => 'contatos.update.get', 'uses' => 'ContatosGit@updateBioUsuario']);
+// Route::put('/contato/update', ['as' => 'contatos.put', 'uses' => 'ContatosGit@updateBioUsuario']);
 Route::delete('/contato', ['as' => 'contatos.delete', 'uses' => 'ContatosGit@deleteUsuario']);
