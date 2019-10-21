@@ -2,18 +2,26 @@
 @section('titulo','Lista de Usuários')
 @section('conteudo')
     <div class="container" id="marginTopHome">
-        <div class="row">
-            <div class="col-12 col-lg-4">
-                <div class="card" style="width: 18rem;">
-                    {{-- <img src="{{ $userGitHubs['avatar_url'] }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><p>{{ $userGitHubs['login'] }}</p></h5>
-                        <p class="card-text">{{ $userGitHubs['bio'] }}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div> --}}
+        @if ($itens > 0)
+            @foreach ($itens as $item)
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ $item['avatar_url'] }}" class="card-img-top" alt="{{$item['login']}}">
+                        <div class="card-body">
+                            <h5 class="card-title"><p>{{ $item['login'] }}</p></h5>
+                            <p class="card-text">{{ $item['bio'] }}</p>
+                            <a href="#" class="btn btn-primary">Editar</a>
+                            <a href="#" class="btn btn-primary">Deletar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            @endforeach
+        @else
+            <div class="alert alert-danger" role="alert">
+                Não há dados no Banco de Dados!
+            </div>
+        @endif
     </div>
 @endsection    

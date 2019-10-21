@@ -15,7 +15,8 @@ class ContatosGit extends Controller
      * @return void
      */
     public function getUsuarios(){
-        return view('/contato/contato');
+        $userGitHubs = 0;
+        return view('/contato/contato')->with('itens', json_decode($userGitHubs, true));;
     }
     /**
      * adicionar
@@ -30,8 +31,8 @@ class ContatosGit extends Controller
      *
      * @return void
      */
-    public function createUsuario(){
-         // Pegando informações do model e usando a biblioteca Guzzlehttp
+    public function createUsuario(Request $req){
+        // Pegando informações do model e usando a biblioteca Guzzlehttp
         // $usuario = new Usuario();
         // $nome = $usuario->lista()->nome;
         // $client = new \GuzzleHttp\Client();
@@ -39,12 +40,12 @@ class ContatosGit extends Controller
         // $res = $client->get($url);
         // $userGitHubs = (string) $res->getBody();
         
-        // $nome = $req['nomeUserGit'];
+        $nome = $req['nomeUserGit'];
         // $client = new \GuzzleHttp\Client();
         // $url = 'https://api.github.com/users/'.$nome.'';
         // $res = $client->get($url);
         // $userGitHubs = (string) $res->getBody();
-
+        dd($nome);
         // return view('/contato/contato')->with('userGitHubs', json_decode($userGitHubs, true));
     }
     /**
