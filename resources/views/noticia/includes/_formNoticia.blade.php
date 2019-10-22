@@ -2,7 +2,7 @@
     @csrf
     <div class="form-group">
         <label for="formGroupExampleInput">Titulo Nóticia</label>
-        <input type="text" name="titulo" class="form-control" id="formGroupExampleInput" placeholder="Titulo Notícia">
+        <input type="text" name="titulo" class="form-control" id="formGroupExampleInput" placeholder="Titulo Notícia" required>
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Notícia</label>
