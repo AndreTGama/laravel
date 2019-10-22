@@ -5,18 +5,24 @@
     </div>
     <div class="form-group">
         <label for="formGroupExampleInput2">Notícia</label>
-        <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+        <textarea class="form-control" id="validationTextarea" placeholder="Notícia"></textarea>
     </div>
     <div id="inputFileDiv">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="validatedCustomFile">
-            <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
+            <label>Descrição Arquivo</label>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <input type="text" class="form-control" name="descriçãoArquivo" placeholder="Descrição do Arquivo">
+                </div>
+                <div class="col-12 col-lg-6">
+                    <input type="file" name="arquivo" class="custom-file-input" id="validatedCustomFile">
+                    <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="container">
-
-    </div>
+    <div id="container"></div>
     <div class="form-group" id="moreInput">
-        <button class="btn btn-primary" id="somebutton">+</button>    
+        <a href="#container" class="btn btn-primary" id="somebutton">+</a>    
     </div>
 </form>
