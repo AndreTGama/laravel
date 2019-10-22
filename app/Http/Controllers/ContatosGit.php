@@ -30,6 +30,8 @@ class ContatosGit extends Controller
     /**
      * createUsuario
      *
+     * @param  mixed $req
+     *
      * @return void
      */
     public function createUsuario(Request $req){
@@ -61,6 +63,8 @@ class ContatosGit extends Controller
     /**
      * updateBioUsuario
      *
+     * @param  mixed $id
+     *
      * @return void
      */
     public function updateBioUsuario($id){
@@ -68,11 +72,32 @@ class ContatosGit extends Controller
         return view('/contato/updateUser')->with('item', json_decode($contato, true));
     }
     /**
-     * deleteUsuario
+     * atualizar
+     *
+     * @param  mixed $req
+     * @param  mixed $id
      *
      * @return void
      */
-    public function deleteUsuario(){
-        
+    public function atualizar(Request $req, $id){
+        $nome = $req->all();
+        if(isset($nome['nome'])){
+            $arrayUser = ['nome'=>$nome['nome'],'bio'=>$nome['bio'],'avatar'=>$nome['avatar']];
+            Contato::find($id)->update($arrayUser);
+            return redirect()->route('contatos.get');
+        }else{
+            return redirect()->route('home');
+        }
+    }
+    /**
+     * deleteUsuario
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
+    public function deleteUsuario($id){
+        Contato::find($id)->delete();
+        return redirect()->route('contatos.get');
     }
 }

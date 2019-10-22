@@ -13,3 +13,9 @@ body {
     width: 25%;
     margin: 2%;
 }
+#centerCardUpdate{
+    text-align: center;
+}
+#cardMarginItem{
+    margin: 2%;
+}

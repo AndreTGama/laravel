@@ -1,9 +1,24 @@
-<div class="card" style="width: 18rem;">
-    <img src="{{ $item['avatar'] }}" class="card-img-top" alt="{{$item['nome']}}">
-    <div class="card-body">
-        <h5 class="card-title"><p>{{ $item['nome'] }}</p></h5>
-        <p class="card-text">{{ $item['bio'] }}</p>
-        <a href="#" class="btn btn-primary">Editar</a>
-        <a href="#" class="btn btn-primary">Deletar</a>
+<form action="{{route('contatos.atualizar', $item['id'])}}" method="POST">
+    @csrf
+    <div id="centerCardUpdate" class="card" style="width: 18rem;">
+        <div id="cardMarginItem">
+            <div class="form-group">
+                    <img src="{{ $item['avatar'] }}" class="card-img-top" alt="{{$item['nome']}}">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="avatar" value="{{ $item['avatar'] }}" class="form-control-file" id="exampleFormControlFile1">
+                </div>    
+                <div class="form-group">
+                    <h5 class="card-title"><input value="{{$item['nome'] }}" type="text" class="form-control" name="nome"></h5>
+                </div>
+                <div class="form-group">
+                    <p class="card-text"><input value="{{ $item['bio'] }}" class="form-control" name="bio"/></p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+        </div>
     </div>
-</div>
+</form>
+<br>
+    
