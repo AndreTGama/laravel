@@ -12,6 +12,6 @@ class arquivo extends Model
     ];
 
     public function noticia(){
-        return $this->belongsTo('App\noticia', 'id', 'noticia_id');
+        return $this->belongsTo('App\noticia','noticia_id', 'id');
     }
 }

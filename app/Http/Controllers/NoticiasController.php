@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\arquivo;
 use App\noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Util\Getopt;
 
 class NoticiasController extends Controller
 {
@@ -14,7 +16,12 @@ class NoticiasController extends Controller
      * @return void
      */
     public function index(){
-        return view('noticia/noticias');
+        $noticia = noticia::all();
+        return view('noticia/noticias')->with('noticia', json_decode($noticia, true));
+    }
+    public function paginaNoticia($id){
+        $noticia = noticia::find($id);
+        $arquivo = DB::table('arquivos')->where('noticia_id', $id)->get();
     }
     /**
      * indexNovaNoticia
@@ -24,6 +31,13 @@ class NoticiasController extends Controller
     public function indexNovaNoticia(){
         return view('noticia/criarNoticia');
     }
+    /**
+     * criarNoticia
+     *
+     * @param  mixed $req
+     *
+     * @return void
+     */
     public function criarNoticia(Request $req){
         $titulo = $req->titulo;
         $noticia = $req->noticia;
