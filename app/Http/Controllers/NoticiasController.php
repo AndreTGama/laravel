@@ -4,41 +4,60 @@ namespace App\Http\Controllers;
 
 use App\arquivo;
 use App\noticia;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\Util\Getopt;
 
 class NoticiasController extends Controller
 {
     /**
      * index
      *
+     * @param  mixed $res
+     *
      * @return void
      */
-    public function index(){
+    public function index(Response $res){
         $noticia = noticia::all();
-        return view('noticia/noticias')->with('noticia', json_decode($noticia, true));
+        if(count($noticia) > 0){
+            return response()->json(['noticia' => $noticia]);
+        }else{
+            return response()->json(['message' => 'Não há Notícias no momento']);
+
+        }
     }
-    public function paginaNoticia($id){
+    /**
+     * paginaNoticia
+     *
+     * @param  mixed $res
+     * @param  mixed $id
+     *
+     * @return void
+     */
+    public function paginaNoticia(Response $res, $id){
         $noticia = noticia::find($id);
         $arquivo = DB::table('arquivos')->where('noticia_id', $id)->get();
+        return response()->json(['noticia' => $noticia, 'arquivo' => $arquivo]);
     }
     /**
      * indexNovaNoticia
      *
+     * @param  mixed $res
+     *
      * @return void
      */
-    public function indexNovaNoticia(){
+    public function indexNovaNoticia(Response $res){
         return view('noticia/criarNoticia');
     }
     /**
      * criarNoticia
      *
+     * @param  mixed $res
      * @param  mixed $req
      *
      * @return void
      */
-    public function criarNoticia(Request $req){
+    public function criarNoticia(Response $res, Request $req){
         $titulo = $req->titulo;
         $noticia = $req->noticia;
         if($titulo && $noticia){
@@ -49,9 +68,8 @@ class NoticiasController extends Controller
                 $idNovaNoticia = noticia::where('titulo_noticia', $titulo)->first();
                 $arquivos = $req->file('arquivo');
                 $descricoes = $req->descricaoArquivo;
-
                 if (empty($arquivos) && empty($descricoes)) {
-                    return view('noticia/criarNoticia');
+                    return response()->json(['message' => 'Campos Vazios Para mandar os Arquivos']);
                 }else{
                     for($i = 0; $i < count($arquivos); $i++){
                         $withAccent = array('à','á','â','ã','ä','å','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ù','ü','ú','ÿ','À','Á','Â','Ã','Ä','Å','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ñ','Ò','Ó','Ô','Õ','Ö','O','Ù','Ü','Ú','Ÿ',' ','-',);
@@ -64,13 +82,13 @@ class NoticiasController extends Controller
                         $dadosArquivo = ['descricao_arquivo' => $descricao, 'arquivo' => $filename, 'noticia_id' => $idNovaNoticia->id];
                         arquivo::create($dadosArquivo);
                     }
-                    return view('noticia/criarNoticia');
+                    return response()->json(['message' => 'Salvo Com Sucesso !!!']);
                 }               
             }else{
-                return view('noticia/criarNoticia')->withErrors(['message' => 'Titulo de Notícia já existe']);
+                return response()->json(['message' => 'Titulo de Notícia já existe']);
             }
         }else{
-            return view('noticia/criarNoticia')->withErrors(['message' => 'Campos Vazios']);
+            return response()->json(['message' => 'Campos Vazios']);
         }
     }
 }
