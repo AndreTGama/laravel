@@ -8,7 +8,7 @@ class noticia extends Model
 {
     protected $fillable = 
     [
-        'titulo_noticia','','noticia'
+        'titulo_noticia','noticia'
     ]; 
     
     public function arquivo(){

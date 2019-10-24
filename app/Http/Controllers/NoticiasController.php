@@ -33,21 +33,21 @@ class NoticiasController extends Controller
                 $dados = ['titulo_noticia' => $titulo, 'noticia'=> $noticia];
                 noticia::create($dados);
                 $idNovaNoticia = noticia::where('titulo_noticia', $titulo)->first();
-                $arquivo = $req->file('arquivo');
-                if (empty($arquivo)) {
+                $arquivos = $req->file('arquivo');
+                $descricoes = $req->descricaoArquivo;
+
+                if (empty($arquivos) && empty($descricoes)) {
                     return view('noticia/criarNoticia');
                 }else{
-                    $descricao = $req->descricaoArquivo;
-                    $arquivos = ['arquivo' => $arquivo, 'descricao' => $descricao];
-                    foreach($arquivos as $arquivo){
-                        dd($arquivo['arquivo']);
+                    for($i = 0; $i < count($arquivos); $i++){
                         $withAccent = array('à','á','â','ã','ä','å','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ù','ü','ú','ÿ','À','Á','Â','Ã','Ä','Å','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ñ','Ò','Ó','Ô','Õ','Ö','O','Ù','Ü','Ú','Ÿ',' ','-',);
                         $withoutAccent = array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','O','U','U','U','Y','_','-',);
-                        $decodedName = str_replace($withAccent, $withoutAccent, $arquivo->getClientOriginalName());
+                        $decodedName = str_replace($withAccent, $withoutAccent, $arquivos[$i]->getClientOriginalName());
                         $destinationPath = 'uploads';
                         $filename = rand().'-'.$decodedName;
-                        $arquivo->move($destinationPath, $filename);
-                        $dadosArquivo = ['descricao_arquivo' => $arquivo, 'arquivo' => $filename, 'noticia_id' => $idNovaNoticia];
+                        $arquivos[$i]->move($destinationPath, $filename);
+                        $descricao = $descricoes[$i];
+                        $dadosArquivo = ['descricao_arquivo' => $descricao, 'arquivo' => $filename, 'noticia_id' => $idNovaNoticia->id];
                         arquivo::create($dadosArquivo);
                     }
                     return view('noticia/criarNoticia');
