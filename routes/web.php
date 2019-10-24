@@ -9,8 +9,9 @@ Route::get('/contato/update/{id}', ['as' => 'contatos.update.get', 'uses' => 'Co
 Route::post('/contato/update/{id}', ['as' => 'contatos.atualizar', 'uses' => 'ContatosGit@atualizar']);
 Route::get('/contato/delete/{id}', ['as' => 'contatos.delete', 'uses' => 'ContatosGit@deleteUsuario']);
 
-// Notícias
-Route::get('/noticias', ['as' => 'noticias', 'uses' => 'NoticiasController@index']);
-Route::get('/nova-noticia', ['as' => 'noticias.nova', 'uses' => 'NoticiasController@indexNovaNoticia']);
-Route::post('/nova/noticia', ['as' => 'noticias.nova.post', 'uses' => 'NoticiasController@criarNoticia']);
-Route::get('/nova/noticia={id}', ['as' => 'pagina.noticia', 'uses' => 'NoticiasController@paginaNoticia']);
+Route::group(['prefix' => 'noticias'], function(){
+    Route::get('', ['as' => 'noticias', 'uses' => 'NoticiasController@index']);
+    Route::get('/nova-noticia', ['as' => 'noticias.nova', 'uses' => 'NoticiasController@indexNovaNoticia']);
+    Route::post('/nova/noticia', ['as' => 'noticias.nova.post', 'uses' => 'NoticiasController@criarNoticia']);
+    Route::get('/nova/noticia={id}', ['as' => 'pagina.noticia', 'uses' => 'NoticiasController@paginaNoticia']);
+});
