@@ -20,6 +20,12 @@ class CreateNoticiasTable extends Migration
             $table->longText('noticia');
             $table->timestamps();
         });
+        Schema::table('noticias', function($table) {
+            $table->bigInteger('tipo_noticias_id')->unsigned()->index();
+            $table->foreign('tipo_noticias_id')
+                    ->references('id')->on('tipo_noticias')
+                    ->onDelete('cascade');
+        });
         Schema::enableForeignKeyConstraints();
 
     }
