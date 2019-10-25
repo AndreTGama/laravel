@@ -26,7 +26,7 @@ class LoginController extends Controller
     public function confirmarLogin(Response $res, Request $req){
         $usuario = $req->usuario;
         $senha = $req->senha;
-
+        if(Auth::)
     }
     /**
      * indexCriarConta
