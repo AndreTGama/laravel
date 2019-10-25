@@ -1,6 +1,12 @@
 body {
     background-color: #f2f2f2 !important;
 }
+#cardLogin{
+    margin: 5%;
+}
+#cardLoginBody{
+    margin: 5%;
+}
 #marginTopHome{
     width: 80%;
     margin-top: 3%;

@@ -48,7 +48,6 @@ class APINoticiasController extends Controller
      */
     public function tipoNoticia(Response $res){
         $tipoNoticia = tipo_noticia::all();
-        dd($tipoNoticia);
         return response()->json(['tipoNoticia' => $tipoNoticia]);
     }
     /**

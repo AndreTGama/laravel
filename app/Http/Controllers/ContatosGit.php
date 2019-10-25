@@ -36,12 +36,6 @@ class ContatosGit extends Controller
      */
     public function createUsuario(Request $req){
         // Pegando informações do model e usando a biblioteca Guzzlehttp
-        // $usuario = new Usuario();
-        // $nome = $usuario->lista()->nome;
-        // $client = new \GuzzleHttp\Client();
-        // $url = 'https://api.github.com/users/'.$nome.'';
-        // $res = $client->get($url);
-        // $userGitHubs = (string) $res->getBody();
         $nome = $req->all();
         if(isset($nome['nomeUserGit'])){
             $client = new \GuzzleHttp\Client();
@@ -58,7 +52,6 @@ class ContatosGit extends Controller
         }else{
             return redirect()->route('home');
         }
-        
     }
     /**
      * updateBioUsuario
