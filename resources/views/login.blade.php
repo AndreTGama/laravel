@@ -14,7 +14,8 @@
                     <label for="exampleInputPassword1">Senha</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Entrar</button>
+                  <small class="form-text text-muted" id="cadastr" class="form-text text-muted">Caso não tem uma conta cick <a href="{{route('cadastro')}}">AQUI</a></small>
               </form>
           </div>
         </div>

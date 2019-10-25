@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nome', 'email', 'senha',
     ];
 
     /**
@@ -25,15 +25,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'senha', 'remember_token',
     ];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+     * Neste caso não foi feito essa coluna, pelo fato que o sistema não tera uma validação pelo e-mail.
+     *  protected $casts = [
+     *      'email_verified_at' => 'datetime',
+     *  ];
+    */
 }

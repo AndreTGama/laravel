@@ -41,7 +41,8 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function indexCriarConta(){
+    public function cadastro(){
+
         return view('cadastro');
     }
     /**
