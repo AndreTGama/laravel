@@ -46,10 +46,10 @@ class APINoticiasController extends Controller
      *
      * @return void
      */
-    public function indexNovaNoticia(Response $res){
+    public function tipoNoticia(Response $res){
         $tipoNoticia = tipo_noticia::all();
         dd($tipoNoticia);
-        return view('noticia/criarNoticia');
+        return response()->json(['tipoNoticia' => $tipoNoticia]);
     }
     /**
      * criarNoticia

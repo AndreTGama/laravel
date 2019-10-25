@@ -23,3 +23,5 @@
     @endif --}}
 </div>
 @endsection
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('js/noticias.js')}}"></script>
