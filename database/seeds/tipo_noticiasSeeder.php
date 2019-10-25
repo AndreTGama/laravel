@@ -13,18 +13,21 @@ class tipo_noticiasSeeder extends Seeder
     public function run()
     {   $dados = [
             [
-                'tipo_noticia' => 'Politica',
-                
+                'tipo_noticia' => 'Política',
+
             ],[
                 'tipo_noticia' => 'Cultura'
             ],[
                 'tipo_noticia' => 'Esporte'
+            ],[
+                'tipo_noticia' => 'Música'
+            ],[
+                'tipo_noticia' => 'Desenvolvimento'
+            ],[
+                'tipo_noticia' => 'Saúde'
             ]
         ];
 
-        foreach($dados as $dado){
-            DB::table('tipo_noticias')->insert($dados)->save();
-        }
-    
+        DB::table('tipo_noticias')->insert($dados);
     }
 }
