@@ -1,3 +1,3 @@
-@include('layout._includes.headHome')
+@include('layout._includes.headPrincipal')
 @yield('conteudo')
 @include('layout._includes.footer')

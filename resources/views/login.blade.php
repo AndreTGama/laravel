@@ -1,5 +1,5 @@
-@extends('layout.siteHome')
-@section('titulo','Home')
+@extends('layout.site')
+@section('titulo','Login')
 @section('conteudo')
     <div class="container">
         <div class="card" id="cardLogin">
@@ -15,7 +15,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+              </form>
           </div>
         </div>
     </div>

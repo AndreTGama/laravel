@@ -1,4 +1,4 @@
-@extends('./layout.siteNoticias')
+@extends('layout.sitePrincipal')
 @section('titulo','Notícia')
 @section('conteudo')
 

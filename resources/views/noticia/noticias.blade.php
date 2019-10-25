@@ -1,4 +1,4 @@
-@extends('./layout.siteNoticias')
+@extends('layout.sitePrincipal')
 @section('titulo','Notícias')
 @section('conteudo')
 <div class="container" id="marginTopHome">

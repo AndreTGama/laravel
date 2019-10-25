@@ -1,4 +1,4 @@
-@extends('layout.siteNoticias')
+@extends('layout.sitePrincipal')
 @section('titulo','Nova Notícias')
 @section('conteudo')
 <div class="container">
