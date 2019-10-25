@@ -1,4 +1,4 @@
-<form method="POST" action="{{route('noticias.nova.post')}}" enctype="multipart/form-data" class="formMarginTop">
+<form method="POST" action="" enctype="multipart/form-data" class="formMarginTop">
     @csrf
     <div class="form-group">
         <label for="formGroupExampleInput">Titulo Nóticia</label>

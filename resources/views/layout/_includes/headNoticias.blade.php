@@ -16,11 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{route('noticias.nova')}}">Adicionar</a>
+              <a class="nav-link" href="{{route('noticias')}}">Noticias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('noticias.nova')}}">Adicionar</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">

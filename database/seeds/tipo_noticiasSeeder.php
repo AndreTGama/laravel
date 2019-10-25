@@ -12,19 +12,26 @@ class tipo_noticiasSeeder extends Seeder
      */
     public function run()
     {   $dados = [
-            [
-                'tipo_noticia' => 'Política',
-
-            ],[
+           [
                 'tipo_noticia' => 'Cultura'
-            ],[
-                'tipo_noticia' => 'Esporte'
-            ],[
-                'tipo_noticia' => 'Música'
             ],[
                 'tipo_noticia' => 'Desenvolvimento'
             ],[
+                'tipo_noticia' => 'Educação'
+            ],[
+                'tipo_noticia' => 'Eventos'
+            ],[
+                'tipo_noticia' => 'Esporte'
+            ],[
+                'tipo_noticia' => 'Gabinete'
+            ],[
+                'tipo_noticia' => 'Música'
+            ],[
                 'tipo_noticia' => 'Saúde'
+            ],[
+                'tipo_noticia' => 'Planejamento'
+            ],[
+                'Saúde'
             ]
         ];
 

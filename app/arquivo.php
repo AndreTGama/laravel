@@ -11,6 +11,11 @@ class arquivo extends Model
         'descricao_arquivo', 'arquivo', 'noticia_id'
     ];
 
+    /**
+     * noticia
+     *
+     * @return void
+     */
     public function noticia(){
         return $this->belongsTo('App\noticia','noticia_id', 'id');
     }

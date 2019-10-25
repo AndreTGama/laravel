@@ -16,14 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('contatos.get')}}">Usuários do Git</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('contatos.novoUser.get')}}">Notícias</a>
+              <a class="nav-link" href="{{route('noticias')}}">Notícias</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
