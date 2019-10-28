@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -36,9 +37,9 @@ class LoginController extends Controller
      * @return void
      */
     public function login(Response $res, Request $req){
-        $email = $req->email;
-        $senha = $req->senha;
-
+        
+        $email = $req->lblEmail;
+        $senha = $req->lblSenha;
         if(Auth::attempt(['email' => $email, 'senha' => $senha])){
             return view('home');
         }else{
