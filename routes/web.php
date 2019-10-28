@@ -13,5 +13,5 @@ Route::group(['middleware' => ['auth', 'auth.unique.user']], function(){
     Route::get('/nova-noticia', ['as' => 'noticias.nova', 'uses' => 'NoticiasController@novaNoticia']);
     Route::get('/nova/noticia={id}', ['as' => 'pagina.noticia', 'uses' => 'NoticiasController@paginaNoticia']);
     Route::get('/perfil', ['as' => 'perfil','uses' => 'PerfilController@index']);
-    Route::post('/perfil', ['as' => 'perfil.post','uses' => 'PerfilController@atualizarPerfil']);
+    Route::post('/perfil/{id}', ['as' => 'perfil.post','uses' => 'PerfilController@atualizaPerfil']);
 });
