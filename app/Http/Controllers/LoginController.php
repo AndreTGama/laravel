@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,8 +26,17 @@ class LoginController extends Controller
      * @return void
      */
     public function home(){
-        return view('home');
-
+        $user = Auth::user()->nome;
+        return view('home', ['nome' => $user]);
+    }
+    /**
+     * apiHome
+     *
+     * @return void
+     */
+    public function apiHome(){
+        $user = Auth::user()->nome;
+        return response()->json(['message' => 'Bem-Vindo '.$user]); 
     }
     /**
      * confirmarLogin
@@ -36,13 +47,24 @@ class LoginController extends Controller
      * @return void
      */
     public function login(Response $res, Request $req){
-        $email = $req->email;
-        $senha = $req->senha;
-
-        if(Auth::attempt(['email' => $email, 'senha' => $senha])){
-            return view('home');
+        
+        $email = $req->lblEmail;
+        $senha = $req->lblSenha;
+        if(!empty($email) && !empty($senha)){
+            $user = User::where('email', '=', $email)->first();
+            if($user){
+                $hashedPassword = $user->senha;
+                if (Hash::check($senha, $hashedPassword)) {
+                    Auth::login($user);
+                    return redirect('home'); 
+                }else{
+                    return response()->json(['message' => 'Senha Incorreta']); 
+                }
+            }else{
+                return response()->json(['message' => 'E-mail Incorreto']); 
+            }   
         }else{
-            return view('login');
+            return response()->json(['message' => 'Campos Vazios']); 
         }
     }
     /**
@@ -70,22 +92,32 @@ class LoginController extends Controller
      * @return void
      */
     public function cadastrarUser(Request $req){
-        if($req->lblSenha == $req->lblSenha2){
-            $user = DB::table('users')->where('email',$req->lblEmail)->first();
-            if(isset($user)){
-                return response()->json(['message' => 'E-mail já está em uso']); 
+        
+        $senha1 = $req->lblSenha;
+        $senha2 = $req->lblSenha2;
+        $email = $req->lblEmail;
+        $nome = $req->lblNome;
+        
+        if(!empty($senha1) && !empty($senha2) && !empty($email) && !empty($nome)){
+            if($senha1 == $senha2){
+                $user = DB::table('users')->where('email','=', $email)->first();
+                if(isset($user)){
+                    return response()->json(['message' => 'E-mail já está em uso']); 
+                }else{
+                    $dados = [
+                        'nome' => $nome, 
+                        'email' => $email, 
+                        'senha' => Hash::make($senha1)
+                    ];
+                    User::create($dados);
+                    return response()->json(['message' => 'Conta Criada com Sucesso!!!']); 
+                }
             }else{
-                $dados = [
-                    'nome' => $req->lblNome, 
-                    'email' => $req->lblEmail, 
-                    'senha' => Hash::make($req->lblSenha)
-                ];
-                User::create($dados);
-                return response()->json(['message' => 'Conta Criada com Sucesso!!!']); 
-            }
+                return response()->json(['message' => 'Senhas estão diferentes']); 
+            }  
         }else{
-            return response()->json(['message' => 'Senhas estão diferentes']); 
-        }        
+            return response()->json(['message' => 'Campos Vazios']); 
+        }      
 
         // $client = new \GuzzleHttp\Client();
         // $url = 'https://api.github.com/users/'.$nome['nomeUserGit'].'';
