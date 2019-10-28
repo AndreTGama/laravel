@@ -5,8 +5,7 @@ Route::post('/login', ['as' => 'login.post', 'uses' => 'LoginController@login'])
 Route::get('/logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
 Route::get('/cadastro', ['as' => 'cadastro', 'uses' => 'LoginController@cadastro']);
-Route::post('/cadastro', ['as' => 'cadastro.post', 'uses' => 'LoginController@cadastrarUser']);
-
+Route::get('/home', ['as' => 'home','uses' => 'LoginController@home']);
 
 Route::group(['middleware' => ['auth', 'auth.unique.user']], function(){
     Route::get('/home', ['as' => 'home','uses' => 'LoginController@home']);

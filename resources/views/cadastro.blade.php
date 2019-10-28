@@ -26,6 +26,4 @@
         <button type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
-  </div>
-</div>
 @endsection
