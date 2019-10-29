@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TipoUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -83,7 +84,8 @@ class LoginController extends Controller
      * @return void
      */
     public function cadastro(){
-        return view('cadastro');
+        $tipoUser = TipoUser::all();
+        return view('cadastro', ['tipouser' => $tipoUser]);
     }
     /**
      * criarConta
@@ -98,8 +100,9 @@ class LoginController extends Controller
         $senha2 = $req->lblSenha2;
         $email = $req->lblEmail;
         $nome = $req->lblNome;
-        
-        if(!empty($senha1) && !empty($senha2) && !empty($email) && !empty($nome)){
+        $tipoUser = $req->lblTipoUser;
+
+        if(!empty($senha1) && !empty($senha2) && !empty($email) && !empty($nome)  && !empty($tipoUser)){
             if($senha1 == $senha2){
                 $user = DB::table('users')->where('email','=', $email)->first();
                 if(isset($user)){
@@ -108,7 +111,8 @@ class LoginController extends Controller
                     $dados = [
                         'nome' => $nome, 
                         'email' => $email, 
-                        'senha' => Hash::make($senha1)
+                        'senha' => Hash::make($senha1),
+                        'tipo_user_id' => $tipoUser
                     ];
                     User::create($dados);
                     return response()->json(['message' => 'Conta Criada com Sucesso!!!']); 

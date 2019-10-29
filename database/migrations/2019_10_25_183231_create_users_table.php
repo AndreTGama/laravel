@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
         Schema::table('users', function($table) {
             $table->bigInteger('tipo_user_id')->unsigned()->index();
             $table->foreign('tipo_user_id')
-                    ->references('id')->on('tipo_user')
+                    ->references('id')->on('tipo_users')
                     ->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();

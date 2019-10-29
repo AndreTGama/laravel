@@ -10,7 +10,7 @@ Route::get('/formulario-esqueceu-senha', ['as' => 'form.esqueceu.senha', 'uses' 
 
 
 Route::get('/cadastro', ['as' => 'cadastro', 'uses' => 'LoginController@cadastro']);
-Route::get('/home', ['as' => 'home','uses' => 'LoginController@home']);
+Route::post('/cadastro', ['as' => 'cadastro.post', 'uses' => 'LoginController@cadastrarUser']);
 
 Route::group(['middleware' => ['auth', 'auth.unique.user']], function(){
     Route::get('/home', ['as' => 'home','uses' => 'LoginController@home']);

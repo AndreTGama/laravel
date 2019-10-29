@@ -16,6 +16,15 @@
           <small class="form-text text-muted">Nunca compartilharemos seu email com mais ninguém.</small>
         </div>
         <div class="form-group">
+          <label for="lblTipoUser">Tipo de Usuário</label>
+          <select id="lblTipoUser" class="form-control" name="lblTipoUser" required>
+              <option value=''>Escolha o tipo de Usuário</option>
+            @foreach ($tipouser as $item)
+              <option value='{{ $item->id }}'>{{ $item->tipo_user }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group">
           <label for="exampleInputPassword1">Senha</label>
           <input type="password" class="form-control" id="lblSenha" name="lblSenha" placeholder="Senha" required>
         </div>
