@@ -11,6 +11,7 @@
                     <input class="form-group" name="lblNome" value="{{$nome}}"/>
                     <input class="form-group" name="lblEmail" value="{{$email}}"/>
                     <button type="submit" class="btn btn-primary">Editar</button>
+                    <a href="{{route('mudar.senha',$id)}}" class="btn btn-primary">Mudar Senha</a>
                 </div>
             </div>
         </form>

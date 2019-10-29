@@ -129,4 +129,15 @@ class LoginController extends Controller
         // $avatar = $user['avatar_url'];
         // $arrayUser = ['nome'=>$name,'bio'=>$bio,'avatar'=>$avatar];
     }
+    /**
+     * indexEsqueceuSenha
+     *
+     * @return void
+     */
+    public function indexEsqueceuSenha(){
+        return view('esqueceu-senha');
+    }
+    public function esqueceuSenha(){
+        
+    }
 }
