@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
@@ -21,6 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('token_access')->nullable();
             $table->timestamps();
         });
+        Schema::table('users', function($table) {
+            $table->bigInteger('tipo_user_id')->unsigned()->index();
+            $table->foreign('tipo_user_id')
+                    ->references('id')->on('tipo_user')
+                    ->onDelete('cascade');
+        });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
