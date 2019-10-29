@@ -4,14 +4,14 @@
     <div class="container">
         <div class="card" id="cardLogin">
           <div id="cardLoginBody">
-            <form action="{{route('login.post')}}" method="POST">
+            <form action="{{route('esqueceu.senha.post')}}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input type="email" class="form-control" name="lblEmail" id="lblEmail" aria-describedby="emailHelp" placeholder="E-mail" required>
                 <small class="form-text text-muted">Nunca compartilharemos seu email com mais ninguém.</small>
               </div>
-              <button type="submit" class="btn btn-primary">Entrar</button>
+              <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
           </div>
         </div>

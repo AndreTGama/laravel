@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -137,7 +138,26 @@ class LoginController extends Controller
     public function indexEsqueceuSenha(){
         return view('esqueceu-senha');
     }
-    public function esqueceuSenha(){
+    public function esqueceuSenha(Request $req){
+        $email = $req->lblEmail;
+        if(!empty($email)){
+            $user = DB::table('users')->where('email','=', $email)->first();
+            if(!empty($user)){
+                $details = [
+                    'title' => 'Mail from ItSolutionStuff.com',
+                    'body' => 'This is for testing email using smtp'
+                ];
+                Mail::to($user->email)->send(new \App\Mail\MyTestMail($details));
+                return response()->json(['message' => 'E-mail Enviado']); 
+            }else{
+                return response()->json(['message' => 'E-mail não existe no sistema']); 
+            }
+        }else{
+            return response()->json(['message' => 'Campos Vazios']); 
+        }
         
+    }
+    public function formEsqueceuSenha(){
+        return view('form-esqueceu-senha');
     }
 }

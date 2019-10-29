@@ -5,6 +5,8 @@ Route::post('/login', ['as' => 'login.post', 'uses' => 'LoginController@login'])
 Route::get('/logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 Route::get('/esqueceu-senha', ['as' => 'esqueceu.senha', 'uses' => 'LoginController@indexEsqueceuSenha']);
 Route::post('/esqueceu-senha', ['as' => 'esqueceu.senha.post', 'uses' => 'LoginController@esqueceuSenha']);
+Route::get('/formulario-esqueceu-senha', ['as' => 'form.esqueceu.senha', 'uses' => 'LoginController@formEsqueceuSenha']);
+
 
 
 Route::get('/cadastro', ['as' => 'cadastro', 'uses' => 'LoginController@cadastro']);
