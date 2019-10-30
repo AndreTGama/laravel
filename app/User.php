@@ -37,4 +37,8 @@ class User extends Authenticatable
      *      'email_verified_at' => 'datetime',
      *  ];
     */
+    public function tipoUser(){
+        return $this->belongsTo('App\TipoUser','tipo_user_id', 'id');
+    }
+
 }

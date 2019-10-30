@@ -23,24 +23,6 @@ class LoginController extends Controller
         return view('login');
     }
     /**
-     * home
-     *
-     * @return void
-     */
-    public function home(){
-        $user = Auth::user()->nome;
-        return view('home', ['nome' => $user]);
-    }
-    /**
-     * apiHome
-     *
-     * @return void
-     */
-    public function apiHome(){
-        $user = Auth::user()->nome;
-        return response()->json(['message' => 'Bem-Vindo '.$user]); 
-    }
-    /**
      * confirmarLogin
      *
      * @param  mixed $res
@@ -58,7 +40,10 @@ class LoginController extends Controller
                 $hashedPassword = $user->senha;
                 if (Hash::check($senha, $hashedPassword)) {
                     Auth::login($user);
-                    return redirect('home'); 
+                    $tipoUserId = $user->tipo_user_id;
+                    $tipoUser = TipoUser::where('id', '=', $tipoUserId)->first();
+                    $nomeTipoUser = $tipoUser['tipo_user'];
+                    return redirect()->route($nomeTipoUser.'.home');
                 }else{
                     return response()->json(['message' => 'Senha Incorreta']); 
                 }

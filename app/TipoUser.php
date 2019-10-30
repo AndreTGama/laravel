@@ -14,5 +14,8 @@ class TipoUser extends Model
     protected $fillable = [
         'tipo_user',
     ];
+    public function User(){
+        return $this->hasOne('App\User', 'tipo_user_id', 'id');
+    }
 
 }
